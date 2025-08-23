@@ -1,23 +1,24 @@
 #!/bin/bash
 
-# Fetch zone and region
-ZONE=$(gcloud compute project-info describe \
-  --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
+
 REGION=$(gcloud compute project-info describe \
   --format="value(commonInstanceMetadata.items[google-compute-default-region])")
-PROJECT_ID=$(gcloud config get-value project)
 
 
 
-gcloud config set project $PROJECT_ID
+gcloud config set project qwiklabs-gcp-03-08cb53783f80
 
 gcloud config set compute/region $REGION
 
-gcloud config set compute/zone $ZONE
+gcloud config set compute/zone us-west1-b
 
 
+gcloud auth list
 
-gcloud config set compute/zone $ZONE
+gcloud config list project
+
+
+gcloud config set compute/zone us-west1-b
 
 gsutil cp gs://spls/gsp051/continuous-deployment-on-kubernetes.zip .
 
